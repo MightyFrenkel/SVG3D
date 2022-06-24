@@ -16,6 +16,8 @@ export function createShapeBufferGeometry(shape: Shape) {
     case Shape.Octahedron:
       return new THREE.OctahedronGeometry(2);
     case Shape.Box:
-      new THREE.BoxBufferGeometry(2.5, 2.5, 2.5);
+      return new THREE.BoxBufferGeometry(2.5, 2.5, 2.5);
+    default:
+      throw Error(shape + " not implemented");
   }
 }

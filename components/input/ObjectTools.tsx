@@ -27,9 +27,7 @@ export function ObjectTools() {
           </Button>
           <Button onClick={() => createShape(Shape.Torus)}>Torus</Button>
           <Button onClick={() => createShape(Shape.Cone)}>Cone</Button>
-          <Button onClick={() => createShape(Shape.Icosahedron)}>
-            Icosahedron
-          </Button>
+
           <Button onClick={() => createShape(Shape.Octahedron)}>
             Octahedron
           </Button>

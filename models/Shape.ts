@@ -3,7 +3,6 @@ export enum Shape {
   Sphere,
   Tetrahedron,
   Cone,
-  Icosahedron,
   Torus,
   Octahedron,
   Box,
