@@ -1,11 +1,13 @@
-import { Loader, OrbitControls, TransformControls } from "@react-three/drei";
+import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 import { Suspense } from "react";
-import { Sphere } from "./Sphere";
 
+interface MainCanvasProps {
+  children: React.ReactNode;
+}
 const MainCanvas = React.forwardRef(
-  (props, ref: React.Ref<HTMLCanvasElement>) => {
+  ({ children }: MainCanvasProps, ref: React.Ref<HTMLCanvasElement>) => {
     return (
       <>
         <Canvas
@@ -24,11 +26,7 @@ const MainCanvas = React.forwardRef(
             position={[5, 15, 10]}
           />
           <ambientLight intensity={0.5} />
-          <Suspense fallback={null}>
-            <TransformControls mode="translate">
-              <Sphere />
-            </TransformControls>
-          </Suspense>
+          <Suspense fallback={null}>{children}</Suspense>
           <OrbitControls makeDefault />
         </Canvas>
         <Loader />

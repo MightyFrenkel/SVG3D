@@ -1,9 +1,12 @@
 import React from "react";
 
-export function Button(
-  props: Omit<React.ComponentProps<"button">, "className">
-) {
+export function Button(props: React.ComponentProps<"button">) {
   return (
-    <button className="px-8 py-4 rounded shadow border bg-white" {...props} />
+    <button
+      {...props}
+      className={
+        "px-8 py-4 rounded shadow border bg-white " + (props.className ?? "")
+      }
+    />
   );
 }
