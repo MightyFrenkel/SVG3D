@@ -3,22 +3,19 @@ import type { NextPage } from "next";
 
 import React, { useRef, useState } from "react";
 import { Button } from "../components/input/Button";
-import {
-  useAppContextState,
-  useAppContextUpdater,
-} from "../components/contexts/AppContext";
+import { useAppContextState } from "../components/contexts/AppContext";
 import { Controls } from "../components/three/Controls";
 import { BaseCanvas } from "../components/three/BaseCanvas";
 import { TransformTools } from "../components/input/TransformTools";
 import { exportCanvas } from "../helpers/export";
 import { Geometries } from "../components/three/Geometries";
 import { ObjectTools } from "../components/input/ObjectTools";
+import { GithubIcon } from "../components/icons/GithubIcon";
 
 const Home: NextPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [selectedObject, setSelectedObject] = useState<number | null>(null);
   const { controls, scene } = useAppContextState();
-  const updater = useAppContextUpdater();
 
   return (
     <div className="h-screen cursor-pointer bg-gradient-to-tr from-blue-100 to-sky-300 relative">
@@ -37,6 +34,15 @@ const Home: NextPage = () => {
 
         <Environment preset="lobby" />
       </BaseCanvas>
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://github.com/MightyFrenkel/SVGto3D"
+        className="absolute left-2 bottom-2 flex gap-2 items-center text-black"
+      >
+        <GithubIcon />
+        Github
+      </a>
       <div className="absolute left-2 top-2 text-black">
         <ObjectTools />
       </div>
