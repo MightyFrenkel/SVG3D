@@ -1,7 +1,7 @@
 import { Button } from "./Button";
-import { useAppContextUpdater } from "./contexts/AppContext";
+import { useAppContextUpdater } from "../contexts/AppContext";
 
-export function ToolBar() {
+export function TransformTools() {
   const { controls } = useAppContextUpdater();
   return (
     <div className="flex gap-2">

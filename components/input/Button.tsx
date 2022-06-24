@@ -5,7 +5,7 @@ export function Button(props: React.ComponentProps<"button">) {
     <button
       {...props}
       className={
-        "px-8 py-4 rounded shadow border bg-white " + (props.className ?? "")
+        "px-4 py-2 rounded shadow border bg-white " + (props.className ?? "")
       }
     />
   );

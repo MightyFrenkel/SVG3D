@@ -11,12 +11,18 @@ const defaultState: IAppContextState = {
     mode: "translate",
     space: "world",
   },
+  scene: {
+    geometries: [],
+  },
 };
 
 const defaultUpdater: IAppContextUpdater = {
   controls: {
     setMode: (value: Mode) => {},
     setSpace: (value: Space) => {},
+  },
+  scene: {
+    addGeometry: (value: React.ComponentProps<"mesh">) => {},
   },
 };
 export const AppContextState =
@@ -49,6 +55,11 @@ export function AppContextProvider({
 }) {
   const [mode, setMode] = useState(defaultState.controls.mode);
   const [space, setSpace] = useState(defaultState.controls.space);
+  const [geometries, setGeometries] = useState(defaultState.scene.geometries);
+
+  function addGeometry(value: React.ComponentProps<"mesh">) {
+    setGeometries(geometries.concat([value]));
+  }
 
   return (
     <AppContextState.Provider
@@ -57,6 +68,9 @@ export function AppContextProvider({
           mode,
           space,
         },
+        scene: {
+          geometries,
+        },
       }}
     >
       <AppContextUpdater.Provider
@@ -64,6 +78,9 @@ export function AppContextProvider({
           controls: {
             setMode,
             setSpace,
+          },
+          scene: {
+            addGeometry,
           },
         }}
       >
