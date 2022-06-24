@@ -1,6 +1,6 @@
 ## Demo
 
-[https://delicate-liger-2b1c74.netlify.app/](Demo)
+[Demo](https://delicate-liger-2b1c74.netlify.app/)
 
 ## Contribute
 
