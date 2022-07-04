@@ -1,11 +1,11 @@
-import { useThree } from "@react-three/fiber";
+// @ts-nocheck
 import { useAppContextState } from "../contexts/AppContext";
 import { Button } from "./Button";
 
 export function MaterialProperties() {
   const state = useAppContextState();
   const object = state.scene.selected;
-  if (!object && "material" in object) return <></>;
+  if (!object || "material" in object === false) return <></>;
 
   return (
     <div>
