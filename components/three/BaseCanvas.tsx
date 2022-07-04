@@ -13,7 +13,8 @@ const BaseCanvas = React.forwardRef(
       <>
         <Canvas
           ref={ref}
-          frameloop="demand"
+          //todo move back to demand
+          frameloop="always"
           gl={{
             preserveDrawingBuffer: true,
           }}

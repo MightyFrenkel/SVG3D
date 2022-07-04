@@ -2,15 +2,15 @@ import { ThreeEvent } from "@react-three/fiber";
 import { Geometry } from "./Geometry";
 
 interface GeometriesProps {
-  onClick: (e: ThreeEvent<MouseEvent>) => void;
+  onClickGeometry: (e: ThreeEvent<MouseEvent>) => void;
   items: React.ComponentProps<"mesh">[];
 }
 
-export function Geometries({ onClick, items }: GeometriesProps) {
+export function Geometries({ onClickGeometry, items }: GeometriesProps) {
   return (
     <>
       {items.map((props, index) => (
-        <Geometry {...props} key={index} onClick={onClick} />
+        <Geometry {...props} key={index} onClick={onClickGeometry} />
       ))}
     </>
   );

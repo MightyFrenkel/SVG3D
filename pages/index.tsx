@@ -1,9 +1,12 @@
 import { Environment } from "@react-three/drei";
 import type { NextPage } from "next";
 
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Button } from "../components/input/Button";
-import { useAppContextState } from "../components/contexts/AppContext";
+import {
+  useAppContextState,
+  useAppContextUpdater,
+} from "../components/contexts/AppContext";
 import { Controls } from "../components/three/Controls";
 import { BaseCanvas } from "../components/three/BaseCanvas";
 import { TransformTools } from "../components/input/TransformTools";
@@ -11,24 +14,25 @@ import { exportCanvas } from "../helpers/export";
 import { Geometries } from "../components/three/Geometries";
 import { ObjectTools } from "../components/input/ObjectTools";
 import { GithubIcon } from "../components/icons/GithubIcon";
+import { ObjectPanel } from "../components/input/ObjectPanel";
 
 const Home: NextPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [selectedObject, setSelectedObject] = useState<number | null>(null);
-  const { controls, scene } = useAppContextState();
+  const state = useAppContextState();
+  const updater = useAppContextUpdater();
 
   return (
     <div className="h-screen cursor-pointer bg-gradient-to-tr from-blue-100 to-sky-300 relative">
       <BaseCanvas ref={canvasRef}>
         <Controls
-          id={selectedObject}
-          mode={controls.mode}
-          space={controls.space}
+          id={state.scene.selected?.id}
+          mode={state.controls.mode}
+          space={state.controls.space}
         />
         <Geometries
-          items={scene.geometries}
-          onClick={(e) => {
-            setSelectedObject(e.object.id);
+          items={state.scene.geometries}
+          onClickGeometry={(e) => {
+            updater.scene.setSelected(e.object);
           }}
         />
 
@@ -46,8 +50,9 @@ const Home: NextPage = () => {
       <div className="absolute left-2 top-2 text-black">
         <ObjectTools />
       </div>
-      <div className="absolute right-2 top-2 text-black">
-        {scene.geometries.length > 0 ? <TransformTools /> : undefined}
+      <div className="absolute right-2 top-2 text-black flex flex-col gap-2">
+        {state.scene.geometries.length > 0 ? <TransformTools /> : undefined}
+        {state.scene.selected ? <ObjectPanel /> : undefined}
       </div>
       <div className="absolute right-2 bottom-2 text-black flex gap-2">
         <Button onClick={() => exportCanvas(canvasRef.current)}>Export</Button>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Object3D } from "three";
 
 export interface IAppContextState {
   controls: {
@@ -7,6 +8,7 @@ export interface IAppContextState {
   };
   scene: {
     geometries: React.ComponentProps<"mesh">[];
+    selected: Object3D<THREE.Event> | undefined | null;
   };
 }
 
@@ -17,6 +19,7 @@ export interface IAppContextUpdater {
   };
   scene: {
     addGeometry: (value: React.ComponentProps<"mesh">) => void;
+    setSelected: (value: Object3D<THREE.Event>) => void;
   };
 }
 

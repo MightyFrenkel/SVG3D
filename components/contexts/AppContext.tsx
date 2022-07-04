@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Object3D } from "three";
 import {
   IAppContextState,
   IAppContextUpdater,
@@ -13,6 +14,7 @@ const defaultState: IAppContextState = {
   },
   scene: {
     geometries: [],
+    selected: null,
   },
 };
 
@@ -23,6 +25,7 @@ const defaultUpdater: IAppContextUpdater = {
   },
   scene: {
     addGeometry: (value: React.ComponentProps<"mesh">) => {},
+    setSelected: (value: Object3D<THREE.Event>) => {},
   },
 };
 export const AppContextState =
@@ -55,6 +58,7 @@ export function AppContextProvider({
 }) {
   const [mode, setMode] = useState(defaultState.controls.mode);
   const [space, setSpace] = useState(defaultState.controls.space);
+  const [selected, setSelected] = useState(defaultState.scene.selected);
   const [geometries, setGeometries] = useState(defaultState.scene.geometries);
 
   function addGeometry(value: React.ComponentProps<"mesh">) {
@@ -70,6 +74,7 @@ export function AppContextProvider({
         },
         scene: {
           geometries,
+          selected,
         },
       }}
     >
@@ -81,6 +86,7 @@ export function AppContextProvider({
           },
           scene: {
             addGeometry,
+            setSelected,
           },
         }}
       >

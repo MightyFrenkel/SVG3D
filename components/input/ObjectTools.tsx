@@ -16,7 +16,9 @@ export function ObjectTools() {
 
   return (
     <div className="">
-      <Button onClick={() => setCollapsed(!collapsed)}>Add</Button>
+      <Button className="" onClick={() => setCollapsed(!collapsed)}>
+        Add object
+      </Button>
       {!collapsed ? (
         <div className="flex flex-col gap-1">
           <Button onClick={() => createShape(Shape.Cylinder)}>Cylinder</Button>
