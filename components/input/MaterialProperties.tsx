@@ -16,27 +16,21 @@ export function MaterialProperties() {
     <>
       {object ? (
         <div className=" bg-gray-200 pt-4 pb-8 px-4 rounded">
-          <div className="w-full border-b pb-1">
-            <p>Material options</p>
-          </div>
-          <div className="flex gap-1">
-            <SketchPicker
-              className="w-full"
-              color={{
-                r: material.color.r * 255,
-                g: material.color.g * 255,
-                b: material.color.b * 255,
-              }}
-              onChange={(color) => {
-                setBlockPickerColor(color.hex);
-                material.color.setRGB(
-                  color.rgb.r / 255,
-                  color.rgb.g / 255,
-                  color.rgb.b / 255
-                );
-              }}
-            />
-          </div>
+          <SketchPicker
+            color={{
+              r: material.color.r * 255,
+              g: material.color.g * 255,
+              b: material.color.b * 255,
+            }}
+            onChange={(color) => {
+              setBlockPickerColor(color.hex);
+              material.color.setRGB(
+                color.rgb.r / 255,
+                color.rgb.g / 255,
+                color.rgb.b / 255
+              );
+            }}
+          />
         </div>
       ) : undefined}
     </>

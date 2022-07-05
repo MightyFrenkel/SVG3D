@@ -12,7 +12,7 @@ import { BaseCanvas } from "../components/three/BaseCanvas";
 import { TransformTools } from "../components/input/TransformTools";
 import { exportCanvas } from "../helpers/export";
 import { Geometries } from "../components/three/Geometries";
-import { ObjectTools } from "../components/input/ObjectTools";
+import { ObjectCreationTools } from "../components/input/ObjectCreationTools";
 import { GithubIcon } from "../components/icons/GithubIcon";
 import { ObjectPanel } from "../components/input/ObjectPanel";
 
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
         Github
       </a>
       <div className="absolute left-2 top-2 text-black">
-        <ObjectTools />
+        <ObjectCreationTools />
       </div>
       <div className="absolute right-2 top-2 text-black flex flex-col gap-2">
         {state.scene.geometries.length > 0 ? <TransformTools /> : undefined}

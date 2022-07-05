@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import { Shape } from "../../models/Shape";
 import { createShapeBufferGeometry } from "../../helpers/createShapeBufferGeometry";
 
-export function ObjectTools() {
+export function ObjectCreationTools() {
   const { scene } = useAppContextUpdater();
   const [collapsed, setCollapsed] = useState(true);
 
