@@ -15,8 +15,10 @@ const BaseCanvas = React.forwardRef(
           ref={ref}
           //todo move back to demand
           frameloop="always"
+          linear={true}
           gl={{
             preserveDrawingBuffer: true,
+            antialias: true,
           }}
           dpr={[1, 2]}
           camera={{ position: [0, 0, 5], fov: 45 }}

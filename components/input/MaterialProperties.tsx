@@ -1,32 +1,44 @@
-// @ts-nocheck
 import { useAppContextState } from "../contexts/AppContext";
-import { Button } from "./Button";
+import { SketchPicker } from "react-color";
+import { useState } from "react";
 
 export function MaterialProperties() {
   const state = useAppContextState();
-  const object = state.scene.selected;
-  if (!object || "material" in object === false) return <></>;
+  const object = state.scene.selected as THREE.Mesh;
+  const material = object?.material as THREE.MeshPhysicalMaterial;
+  const [blockPickerColor, setBlockPickerColor] = useState(
+    "#" + material.color.getHexString()
+  );
+
+  if (!object || !material) return <>Can not update material options</>;
 
   return (
-    <div>
+    <>
       {object ? (
         <div className=" bg-gray-200 pt-4 pb-8 px-4 rounded">
           <div className="w-full border-b pb-1">
             <p>Material options</p>
           </div>
           <div className="flex gap-1">
-            <Button onClick={() => object.material.color.setRGB(1, 0, 0)}>
-              red
-            </Button>
-            <Button onClick={() => object.material.color.setRGB(0, 1, 0)}>
-              green
-            </Button>
-            <Button onClick={() => object.material.color.setRGB(0, 0, 1)}>
-              blue
-            </Button>
+            <SketchPicker
+              className="w-full"
+              color={{
+                r: material.color.r * 255,
+                g: material.color.g * 255,
+                b: material.color.b * 255,
+              }}
+              onChange={(color) => {
+                setBlockPickerColor(color.hex);
+                material.color.setRGB(
+                  color.rgb.r / 255,
+                  color.rgb.g / 255,
+                  color.rgb.b / 255
+                );
+              }}
+            />
           </div>
         </div>
       ) : undefined}
-    </div>
+    </>
   );
 }
